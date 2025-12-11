@@ -196,22 +196,35 @@ const ClinicalRecordApp = () => {
 
     const handlePrint = () => { setPrintMode(true); };
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
+
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col font-sans text-gray-800">
             {!printMode && (
-                <Header setPrintMode={setPrintMode} handlePrint={handlePrint} />
+                <Header
+                    setPrintMode={setPrintMode}
+                    handlePrint={handlePrint}
+                    toggleSidebar={toggleSidebar}
+                    isSidebarOpen={isSidebarOpen}
+                />
             )}
 
-            <div className={`flex flex-1 max-w-7xl mx-auto w-full p-6 gap-8 ${printMode ? 'p-0 w-full max-w-none' : ''}`}>
+            <div className={`flex flex-1 w-full p-4 md:p-6 gap-8 ${printMode ? 'p-0 max-w-none' : ''}`}>
                 {!printMode && (
-                    <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+                    <Sidebar
+                        activeTab={activeTab}
+                        setActiveTab={setActiveTab}
+                        isOpen={isSidebarOpen}
+                        toggleSidebar={toggleSidebar}
+                    />
                 )}
 
-                <main className={`flex-1 ${printMode ? 'w-full' : ''}`}>
+                <main className={`flex-1 min-w-0 ${printMode ? 'w-full' : ''}`}>
                     {printMode ? (
                         <PrintView formData={formData} resultados={resultados} setPrintMode={setPrintMode} />
                     ) : (
-                        <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 animate-fade-in relative transition-all">
+                        <div className="bg-white p-4 md:p-8 rounded-xl shadow-lg border border-gray-200 animate-fade-in relative transition-all w-full">
                             {activeTab === 'datos-generales' && <DatosGenerales formData={formData} handleChange={handleChange} />}
                             {activeTab === 'historia-clinica' && <HistoriaClinica formData={formData} handleChange={handleChange} />}
                             {activeTab === 'familiograma' && <Familiograma formData={formData} handleChange={handleChange} agregarFamiliar={agregarFamiliar} eliminarFamiliar={eliminarFamiliar} updateFamiliar={updateFamiliar} generarInterpretacionFamiliograma={generarInterpretacionFamiliograma} />}
