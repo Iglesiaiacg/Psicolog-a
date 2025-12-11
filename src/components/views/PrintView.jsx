@@ -3,7 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import PaginaBase from '../layout/PaginaBase';
 import GenogramaVisual from '../visuals/GenogramaVisual';
 import GraficaEsferasVisual from '../visuals/GraficaEsferasVisual';
-import { AVISO_PRIVACIDAD_TEXT, CONSENTIMIENTO_INFORMADO_TEXT, MACHOVER_INDICADORES } from '../../utils/constants';
+import { AVISO_PRIVACIDAD_TEXT, CONSENTIMIENTO_INFORMADO_TEXT, MACHOVER_INDICADORES, ESFERAS_QUESTIONS, HAMA_QUESTIONS, BDI_ITEMS, OTIS_QUESTIONS } from '../../utils/constants';
 
 const PrintView = ({ formData, resultados, setPrintMode }) => {
     return (
@@ -142,7 +142,7 @@ const PrintView = ({ formData, resultados, setPrintMode }) => {
                         {/* Import ESFERAS_QUESTIONS logic needs access to constants. Assuming available via closure or props if not directly imported. Using hardcoded mock or re-importing in component file. */}
                         {/* Since I can't easily re-import inside this snippet, I will rely on existing imports or use the implementation pattern.*/}
                         {/* Note: In previous step I saw ESFERAS_QUESTIONS is imported. */}
-                        {require('../../utils/constants').ESFERAS_QUESTIONS.map(q => (
+                        {ESFERAS_QUESTIONS.map(q => (
                             <div key={q.id} className="flex justify-between items-center border-b border-gray-100 py-1">
                                 <span className="flex-1 mr-2">{q.text}</span>
                                 <span className="font-bold border px-2 rounded bg-gray-50">{formData[`esferaQ${q.id}`]}</span>
@@ -214,7 +214,7 @@ const PrintView = ({ formData, resultados, setPrintMode }) => {
                         </div>
                     </div>
                     <div className="grid grid-cols-1 gap-2 text-xs">
-                        {require('../../utils/constants').HAMA_QUESTIONS.map((q, i) => (
+                        {HAMA_QUESTIONS.map((q, i) => (
                             <div key={i} className="flex justify-between items-center border-b border-gray-100 py-2 last:border-0">
                                 <span className="font-medium">{q}</span>
                                 <span className="font-bold bg-gray-50 px-3 py-1 rounded min-w-[3rem] text-center">{formData[`hama${i + 1}`]}</span>
@@ -233,7 +233,7 @@ const PrintView = ({ formData, resultados, setPrintMode }) => {
                         </div>
                     </div>
                     <div className="grid grid-cols-1 gap-1 text-[10px]">
-                        {require('../../utils/constants').BDI_ITEMS.map((label, i) => (
+                        {BDI_ITEMS.map((label, i) => (
                             <div key={i} className="flex justify-between items-center border-b border-gray-100 py-1 last:border-0">
                                 <span className="font-medium truncate pr-4">{label}</span>
                                 <span className="font-bold bg-gray-50 px-2 py-0.5 rounded min-w-[2rem] text-center">{formData[`bdi${i + 1}`]}</span>
