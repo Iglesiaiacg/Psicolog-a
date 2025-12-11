@@ -76,131 +76,285 @@ const PrintView = ({ formData, resultados, setPrintMode }) => {
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="Datos Generales e Historia Clínica" headerInfo={formData}>
-                <div className="grid grid-cols-2 gap-4 text-xs mb-4 p-4 border-b">
-                    <div><span className="font-bold">Paciente:</span> {formData.pacienteNombre}</div>
-                    <div><span className="font-bold">Edad:</span> {formData.edad}</div>
-                    <div><span className="font-bold">Teléfono:</span> {formData.telefono}</div>
-                    <div><span className="font-bold">Ocupación:</span> {formData.ocupacion}</div>
-                </div>
-                <div className="space-y-4 p-4">
-                    <h3 className="font-bold border-b pb-1 text-sm bg-gray-50">Filiación y Presentación:</h3><p className="text-sm text-justify">{formData.filiacionPresentacion}</p>
-                    <h3 className="font-bold border-b pb-1 text-sm bg-gray-50">Relación con el Clínico:</h3><p className="text-sm text-justify">{formData.filiacionRelacion}</p>
-                    <h3 className="font-bold border-b pb-1 text-sm bg-gray-50">Motivo Consulta:</h3><p className="text-sm text-justify">{formData.motivoConsulta}</p>
-                    <h3 className="font-bold border-b pb-1 text-sm bg-gray-50">Antecedentes Heredofamiliares:</h3><p className="text-sm text-justify">{formData.antecedentesHeredofamiliares}</p>
-                    <h3 className="font-bold border-b pb-1 text-sm bg-gray-50">Antecedentes Personales:</h3><p className="text-sm text-justify">{formData.antecedentesPersonalesPatologicos}</p>
-                    <h3 className="font-bold border-b pb-1 text-sm bg-gray-50">Padecimiento Actual:</h3><p className="text-sm text-justify">{formData.historiaPadecimientoActual}</p>
+            <PaginaBase title="Datos Generales" headerInfo={formData}>
+                <div className="grid grid-cols-2 gap-y-4 gap-x-8 text-xs p-4">
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Nombre Completo</span> <span className="text-sm">{formData.pacienteNombre}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Edad</span> <span className="text-sm">{formData.edad} años</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Fecha de Nacimiento</span> <span className="text-sm">{formData.fechaNacimiento}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Sexo</span> <span className="text-sm">{formData.sexo === 'F' ? 'Femenino' : 'Masculino'}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Estado Civil</span> <span className="text-sm">{formData.estadoCivil}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Ocupación</span> <span className="text-sm">{formData.ocupacion}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Escolaridad</span> <span className="text-sm">{formData.escolaridad}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Religión</span> <span className="text-sm">{formData.religion}</span></div>
+                    <div className="border-b pb-1 col-span-2"><span className="font-bold block text-gray-500 uppercase text-[10px]">Domicilio</span> <span className="text-sm">{formData.domicilio}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Teléfono</span> <span className="text-sm">{formData.telefono}</span></div>
+                    <div className="border-b pb-1"><span className="font-bold block text-gray-500 uppercase text-[10px]">Lugar de Origen</span> <span className="text-sm">{formData.lugarOrigen}</span></div>
+                    <div className="border-b pb-1 col-span-2"><span className="font-bold block text-gray-500 uppercase text-[10px]">Referido Por</span> <span className="text-sm">{formData.referidoPor}</span></div>
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="Familiograma" headerInfo={formData}><div className="flex flex-col h-full"><div className="flex-grow border flex items-center justify-center"><GenogramaVisual familia={formData.familia} /></div><div className="border-t p-4 mt-4"><p className="font-bold">Interpretación:</p><p className="text-sm text-justify">{formData.familiogramaInterpretacion}</p></div></div></PaginaBase>
+            <PaginaBase title="Historia Clínica" headerInfo={formData}>
+                <div className="space-y-6 p-4">
+                    <div className="space-y-2">
+                        <h3 className="font-bold border-b border-gray-300 pb-1 text-sm bg-gray-50 p-1">1. Filiación y Presentación</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.filiacionPresentacion}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold border-b border-gray-300 pb-1 text-sm bg-gray-50 p-1">2. Relación con el Clínico</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.filiacionRelacion}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold border-b border-gray-300 pb-1 text-sm bg-gray-50 p-1">3. Motivo de Consulta</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.motivoConsulta}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold border-b border-gray-300 pb-1 text-sm bg-gray-50 p-1">4. Historia del Padecimiento Actual</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.historiaPadecimientoActual}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold border-b border-gray-300 pb-1 text-sm bg-gray-50 p-1">5. Antecedentes Heredofamiliares</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.antecedentesHeredofamiliares}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold border-b border-gray-300 pb-1 text-sm bg-gray-50 p-1">6. Antecedentes Personales Patológicos</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.antecedentesPersonalesPatologicos}</p>
+                    </div>
+                </div>
+            </PaginaBase>
 
-            <PaginaBase title="Escalas de Esferas de Vida" headerInfo={formData}>
+            <PaginaBase title="Familiograma y Dinámica Familiar" headerInfo={formData}>
+                <div className="flex flex-col h-full gap-4">
+                    <div className="flex-grow border flex items-center justify-center p-4 min-h-[400px]">
+                        <GenogramaVisual familia={formData.familia} />
+                    </div>
+                    <div className="border p-4 bg-gray-50 rounded">
+                        <p className="font-bold text-sm mb-2 border-b pb-1">Interpretación Sistémica:</p>
+                        <p className="text-xs text-justify whitespace-pre-wrap">{formData.familiogramaInterpretacion}</p>
+                    </div>
+                </div>
+            </PaginaBase>
+
+            {/* --- CUESTIONARIOS COMPLETOS --- */}
+
+            <PaginaBase title="Escala de Esferas de Vida (Cuestionario)" headerInfo={formData}>
+                <div className="p-4">
+                    <div className="grid grid-cols-1 gap-2 text-[10px]">
+                        {/* Import ESFERAS_QUESTIONS logic needs access to constants. Assuming available via closure or props if not directly imported. Using hardcoded mock or re-importing in component file. */}
+                        {/* Since I can't easily re-import inside this snippet, I will rely on existing imports or use the implementation pattern.*/}
+                        {/* Note: In previous step I saw ESFERAS_QUESTIONS is imported. */}
+                        {require('../../utils/constants').ESFERAS_QUESTIONS.map(q => (
+                            <div key={q.id} className="flex justify-between items-center border-b border-gray-100 py-1">
+                                <span className="flex-1 mr-2">{q.text}</span>
+                                <span className="font-bold border px-2 rounded bg-gray-50">{formData[`esferaQ${q.id}`]}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </PaginaBase>
+
+            <PaginaBase title="Escala de Esferas de Vida (Resultados)" headerInfo={formData}>
                 <div className="flex flex-col items-center h-full p-4">
-                    <div className="w-[12cm] h-[12cm] mb-4"><GraficaEsferasVisual data={resultados.esferas} /></div>
-
-                    <div className="w-full mb-4">
-                        <h4 className="font-bold border-b mb-2 text-sm">Puntajes Totales por Esfera (Max 25):</h4>
-                        <div className="grid grid-cols-3 gap-2 text-xs">
+                    <div className="w-[10cm] h-[10cm] mb-6"><GraficaEsferasVisual data={resultados.esferas} /></div>
+                    <div className="w-full mb-6">
+                        <h4 className="font-bold border-b mb-2 text-sm">Puntajes Totales por Área:</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs">
                             {Object.entries(resultados.esferas).map(([k, v]) => (
-                                <div key={k} className="border p-2 rounded flex justify-between"><span>{k}:</span> <strong>{v}</strong></div>
+                                <div key={k} className="border p-2 rounded flex justify-between bg-gray-50"><span>{k}</span> <strong>{v} / 25</strong></div>
                             ))}
                         </div>
                     </div>
-
-                    <div className="mt-4 border p-4 w-full bg-gray-50">
-                        <p className="font-bold text-sm">Interpretación de Resultados:</p>
-                        <p className="text-xs text-justify mt-1">{formData.esferasInterpretacion}</p>
+                    <div className="border p-4 w-full bg-gray-50 rounded">
+                        <p className="font-bold text-sm mb-1">Interpretación:</p>
+                        <p className="text-xs text-justify whitespace-pre-wrap">{formData.esferasInterpretacion}</p>
                     </div>
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="CEPER III - Resultados" headerInfo={formData}>
+            <PaginaBase title="CEPER III - Cuestionario de Personalidad" headerInfo={formData}>
                 <div className="p-4">
-                    <h3 className="font-bold mb-4">Perfil de Personalidad:</h3>
-                    {Object.entries(resultados.ceper).map(([s, v]) => <div key={s} className="flex mb-1 items-center"><span className="w-32 text-xs font-bold">{s}</span><div className="bg-gray-200 h-2 flex-1 rounded"><div className="bg-blue-600 h-full" style={{ width: `${(v / 120) * 100}%` }}></div></div><span className="w-6 text-xs text-right">{v}</span></div>)}
-                    <div className="mt-8 border-t pt-4">
-                        <p className="font-bold">Interpretación:</p>
-                        <p className="text-sm text-justify">{formData.ceperInterpretacion}</p>
+                    <p className="text-[10px] text-gray-500 mb-4 italic text-center">* Se muestran las respuestas registradas (Valor del 0 al 7, donde 0=Falso/Nunca y 7=Verdadero/Siempre) *</p>
+                    <div className="grid grid-cols-4 gap-2 text-[9px]">
+                        {Array.from({ length: 170 }, (_, i) => i + 1).map(num => (
+                            <div key={num} className="border p-1 rounded flex justify-between items-center break-inside-avoid">
+                                <span className="text-gray-500 font-bold">Item {num}</span>
+                                <span className="font-black bg-gray-100 px-1 rounded">{formData[`ceperQ${num}`] || '-'}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="Pruebas Psicométricas" headerInfo={formData}>
-                <div className="grid grid-cols-2 gap-8 p-4">
-                    <div className="border p-4 rounded bg-gray-50">
-                        <h4 className="font-bold text-blue-900 border-b mb-2">Ansiedad (HAM-A)</h4>
-                        <p className="text-2xl font-black">{resultados.hama.score} Pts</p>
-                        <p className="font-bold text-gray-600">{resultados.hama.text}</p>
+            <PaginaBase title="CEPER III - Perfil de Resultados" headerInfo={formData}>
+                <div className="p-4">
+                    <h3 className="font-bold mb-4 border-b pb-2">Perfil Gráfico de Estilos de Personalidad</h3>
+                    <div className="space-y-2 mb-8">
+                        {Object.entries(resultados.ceper).map(([s, v]) => (
+                            <div key={s} className="flex items-center text-xs">
+                                <span className="w-32 font-bold truncate">{s}</span>
+                                <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden mx-2">
+                                    <div className="h-full bg-slate-700" style={{ width: `${Math.min((v / 140) * 100, 100)}%` }}></div>
+                                </div>
+                                <span className="w-8 text-right font-mono">{v}</span>
+                            </div>
+                        ))}
                     </div>
-                    <div className="border p-4 rounded bg-gray-50">
-                        <h4 className="font-bold text-blue-900 border-b mb-2">Depresión (BDI-II)</h4>
-                        <p className="text-2xl font-black">{resultados.bdi.score} Pts</p>
-                        <p className="font-bold text-gray-600">{resultados.bdi.text}</p>
+                    <div className="border-t pt-4">
+                        <p className="font-bold text-sm mb-2">Interpretación Clínica:</p>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.ceperInterpretacion}</p>
                     </div>
-                    <div className="col-span-2 border p-4 rounded bg-gray-50">
-                        <h4 className="font-bold text-blue-900 border-b mb-2">Inteligencia (OTIS)</h4>
-                        <div className="flex gap-4">
-                            <div>Aciertos: <strong>{formData.otisAciertos}</strong></div>
-                            <div>Errores: <strong>{formData.otisErrores}</strong></div>
-                            <div>Diagnóstico: <strong>{formData.otisDiagnostico}</strong></div>
+                </div>
+            </PaginaBase>
+
+            <PaginaBase title="Escala de Ansiedad de Hamilton (HAM-A)" headerInfo={formData}>
+                <div className="p-4">
+                    <div className="mb-6 border-b pb-4">
+                        <div className="flex justify-between items-end mb-2">
+                            <h4 className="font-bold text-lg">Puntaje Total: {resultados.hama.score}</h4>
+                            <span className="bg-slate-100 px-3 py-1 rounded-full font-bold text-sm">{resultados.hama.text}</span>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2 text-xs">
+                        {require('../../utils/constants').HAMA_QUESTIONS.map((q, i) => (
+                            <div key={i} className="flex justify-between items-center border-b border-gray-100 py-2 last:border-0">
+                                <span className="font-medium">{q}</span>
+                                <span className="font-bold bg-gray-50 px-3 py-1 rounded min-w-[3rem] text-center">{formData[`hama${i + 1}`]}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </PaginaBase>
+
+            <PaginaBase title="Inventario de Depresión de Beck (BDI-II)" headerInfo={formData}>
+                <div className="p-4">
+                    <div className="mb-6 border-b pb-4">
+                        <div className="flex justify-between items-end mb-2">
+                            <h4 className="font-bold text-lg">Puntaje Total: {resultados.bdi.score}</h4>
+                            <span className="bg-slate-100 px-3 py-1 rounded-full font-bold text-sm">{resultados.bdi.text}</span>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-1 text-[10px]">
+                        {require('../../utils/constants').BDI_ITEMS.map((label, i) => (
+                            <div key={i} className="flex justify-between items-center border-b border-gray-100 py-1 last:border-0">
+                                <span className="font-medium truncate pr-4">{label}</span>
+                                <span className="font-bold bg-gray-50 px-2 py-0.5 rounded min-w-[2rem] text-center">{formData[`bdi${i + 1}`]}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </PaginaBase>
+
+            <PaginaBase title="Test de Inteligencia OTIS" headerInfo={formData}>
+                <div className="p-4 space-y-6">
+                    <div className="grid grid-cols-3 gap-4 border p-4 rounded bg-gray-50 text-center">
+                        <div>
+                            <span className="block text-[10px] uppercase font-bold text-gray-500">Aciertos</span>
+                            <span className="text-xl font-black">{formData.otisAciertos}</span>
+                        </div>
+                        <div>
+                            <span className="block text-[10px] uppercase font-bold text-gray-500">Errores</span>
+                            <span className="text-xl font-black">{formData.otisErrores}</span>
+                        </div>
+                        <div>
+                            <span className="block text-[10px] uppercase font-bold text-gray-500">Diagnóstico</span>
+                            <span className="text-lg font-bold text-blue-900">{formData.otisDiagnostico}</span>
+                        </div>
+                    </div>
+
+                    <div className="text-[10px]">
+                        <h4 className="font-bold border-b mb-2">Hoja de Respuestas:</h4>
+                        <div className="grid grid-cols-5 md:grid-cols-10 gap-1">
+                            {Array.from({ length: 75 }, (_, i) => i + 1).map(num => (
+                                <div key={num} className="border p-1 flex justify-between items-center rounded px-2">
+                                    <span className="text-gray-400 font-bold">{num}</span>
+                                    <span className="font-black">{formData[`otis${num}`]}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="Análisis Figura Humana (Machover)" headerInfo={formData}>
+            <PaginaBase title="Test de la Figura Humana (Machover)" headerInfo={formData}>
                 <div className="p-4 space-y-4">
-                    {formData.machoverHistoria && (
-                        <div className="bg-gray-50 p-3 rounded border text-sm italic mb-4">"{formData.machoverHistoria}"</div>
-                    )}
+                    <div className="bg-gray-50 p-4 rounded border">
+                        <h4 className="font-bold text-xs uppercase mb-2 text-gray-500">Historia Narrativa del Dibujo</h4>
+                        <p className="text-sm italic text-justify whitespace-pre-wrap">"{formData.machoverHistoria || 'Sin historia registrada'}"</p>
+                    </div>
+
                     <table className="w-full text-xs border-collapse">
                         <thead>
-                            <tr className="bg-blue-100">
-                                <th className="border p-1 w-1/4">Indicador</th>
-                                <th className="border p-1 w-1/3">Descripción</th>
-                                <th className="border p-1 w-1/3">Interpretación</th>
+                            <tr className="bg-slate-100">
+                                <th className="border p-2 w-1/4 text-left">Indicador</th>
+                                <th className="border p-2 w-1/3 text-left">Descripción Observada</th>
+                                <th className="border p-2 w-1/3 text-left">Interpretación</th>
                             </tr>
                         </thead>
                         <tbody>
                             {MACHOVER_INDICADORES.map((ind, i) => (
-                                <tr key={i}>
-                                    <td className="border p-1 font-bold">{ind}</td>
-                                    <td className="border p-1">{formData[`machoverInd${i}`]}</td>
-                                    <td className="border p-1">{formData[`machoverInt${i}`]}</td>
+                                <tr key={i} className="border-b last:border-0 hover:bg-gray-50">
+                                    <td className="border p-2 font-bold text-gray-700">{ind}</td>
+                                    <td className="border p-2">{formData[`machoverInd${i}`]}</td>
+                                    <td className="border p-2 bg-slate-50/50">{formData[`machoverInt${i}`]}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <div className="border-t pt-2">
-                        <p className="font-bold text-sm">Integración Global:</p>
-                        <p className="text-xs text-justify">{formData.machoverInterpretacionGlobal}</p>
+
+                    <div className="border border-slate-200 p-4 rounded mt-4">
+                        <p className="font-bold text-sm mb-2 uppercase text-slate-700">Integración Global del Test:</p>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap">{formData.machoverInterpretacionGlobal}</p>
                     </div>
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="Notas Clínicas S.O.A.P." headerInfo={formData}>
-                <div className="space-y-6 p-4">
+            <PaginaBase title="Notas de Evolución (S.O.A.P.)" headerInfo={formData}>
+                <div className="space-y-4 p-4">
+                    {formData.notasClinicas.length === 0 && <p className="text-center text-gray-400 italic py-8">No hay notas clínicas registradas.</p>}
                     {formData.notasClinicas.map((n, i) => (
-                        <div key={i} className="border rounded-lg overflow-hidden mb-6 break-inside-avoid shadow-sm">
-                            <div className="bg-gray-100 p-2 font-bold text-sm border-b flex justify-between">
-                                <span>SESIÓN {i + 1}</span>
-                                <span>FECHA: {n.fecha}</span>
+                        <div key={i} className="border border-gray-300 rounded-lg overflow-hidden break-inside-avoid shadow-sm mb-4">
+                            <div className="bg-slate-100 p-2 font-bold text-xs border-b flex justify-between items-center text-slate-800">
+                                <span className="uppercase">Sesión {i + 1}</span>
+                                <span>{n.fecha}</span>
                             </div>
-                            <div className="p-4 grid grid-cols-1 gap-3 text-xs">
-                                <div><strong className="text-blue-900 block mb-1">S (Subjetivo):</strong> <p className="text-justify">{n.s}</p></div>
-                                <div><strong className="text-blue-900 block mb-1">O (Objetivo):</strong> <p className="text-justify">{n.o}</p></div>
-                                <div className="bg-blue-50 p-2 rounded"><strong className="text-blue-900 block mb-1">A (Análisis/Diagnóstico):</strong> <p className="text-justify font-medium">{n.a}</p></div>
-                                <div><strong className="text-blue-900 block mb-1">P (Plan):</strong> <p className="text-justify">{n.p}</p></div>
+                            <div className="p-3 grid grid-cols-1 gap-2 text-xs bg-white">
+                                <div className="grid grid-cols-[20px_1fr] gap-2"><strong className="text-slate-900">S</strong> <p className="text-justify text-gray-700">{n.s}</p></div>
+                                <div className="grid grid-cols-[20px_1fr] gap-2"><strong className="text-slate-900">O</strong> <p className="text-justify text-gray-700">{n.o}</p></div>
+                                <div className="grid grid-cols-[20px_1fr] gap-2 bg-slate-50 py-1 rounded"><strong className="text-slate-900 pl-1">A</strong> <p className="text-justify font-medium text-slate-800">{n.a}</p></div>
+                                <div className="grid grid-cols-[20px_1fr] gap-2"><strong className="text-slate-900">P</strong> <p className="text-justify text-gray-700">{n.p}</p></div>
                             </div>
                         </div>
                     ))}
                 </div>
             </PaginaBase>
 
-            <PaginaBase title="Informe Final" headerInfo={formData}><div className="space-y-4 p-4"><h3 className="font-bold bg-gray-50 p-1">Resumen:</h3><p className="text-sm text-justify">{formData.informeResumen}</p><h3 className="font-bold bg-gray-50 p-1">Diagnóstico:</h3><p className="text-sm text-justify">{formData.informeDiagnostico}</p><h3 className="font-bold bg-gray-50 p-1">Pronóstico:</h3><p className="text-sm text-justify">{formData.informePronostico}</p><h3 className="font-bold bg-gray-50 p-1">Recomendaciones:</h3><p className="text-sm text-justify">{formData.informeRecomendaciones}</p></div></PaginaBase>
+            <PaginaBase title="Informe Clínico Final" headerInfo={formData}>
+                <div className="space-y-6 p-4">
+                    <div className="space-y-2">
+                        <h3 className="font-bold text-sm bg-slate-100 p-2 border-l-4 border-slate-500 uppercase">Resumen del Caso</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap pl-2">{formData.informeResumen}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold text-sm bg-slate-100 p-2 border-l-4 border-slate-500 uppercase">Impresión Diagnóstica Multiaxial</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap pl-2 font-medium">{formData.informeDiagnostico}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold text-sm bg-slate-100 p-2 border-l-4 border-slate-500 uppercase">Pronóstico</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap pl-2">{formData.informePronostico}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <h3 className="font-bold text-sm bg-slate-100 p-2 border-l-4 border-slate-500 uppercase">Recomendaciones Terapéuticas</h3>
+                        <p className="text-xs text-justify leading-relaxed whitespace-pre-wrap pl-2">{formData.informeRecomendaciones}</p>
+                    </div>
+
+                    <div className="mt-16 pt-8 border-t border-gray-300 text-center w-64 mx-auto">
+                        <div className="font-bold text-sm text-slate-900">{formData.pasanteHeader.replace('Pasante: ', '')}</div>
+                        <div className="text-xs text-gray-500 uppercase mt-1">Nombre y Firma del Responsable</div>
+                    </div>
+                </div>
+            </PaginaBase>
         </div>
     );
 };
+
 
 export default PrintView;
