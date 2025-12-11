@@ -210,7 +210,7 @@ const ClinicalRecordApp = () => {
                 />
             )}
 
-            <div className={`flex flex-1 w-full p-4 md:p-6 gap-8 ${printMode ? 'p-0 max-w-none' : ''}`}>
+            <div className={`flex flex-1 w-full overflow-hidden ${printMode ? '' : ''}`}>
                 {!printMode && (
                     <Sidebar
                         activeTab={activeTab}
@@ -220,11 +220,11 @@ const ClinicalRecordApp = () => {
                     />
                 )}
 
-                <main className={`flex-1 min-w-0 ${printMode ? 'w-full' : ''}`}>
+                <main className={`flex-1 flex flex-col min-w-0 bg-white relative overflow-y-auto ${printMode ? 'w-full' : ''}`}>
                     {printMode ? (
                         <PrintView formData={formData} resultados={resultados} setPrintMode={setPrintMode} />
                     ) : (
-                        <div className="bg-white p-4 md:p-8 rounded-xl shadow-lg border border-gray-200 animate-fade-in relative transition-all w-full">
+                        <div className="flex-1 w-full bg-slate-50 h-full p-4 md:p-8">
                             {activeTab === 'datos-generales' && <DatosGenerales formData={formData} handleChange={handleChange} />}
                             {activeTab === 'historia-clinica' && <HistoriaClinica formData={formData} handleChange={handleChange} />}
                             {activeTab === 'familiograma' && <Familiograma formData={formData} handleChange={handleChange} agregarFamiliar={agregarFamiliar} eliminarFamiliar={eliminarFamiliar} updateFamiliar={updateFamiliar} generarInterpretacionFamiliograma={generarInterpretacionFamiliograma} />}
