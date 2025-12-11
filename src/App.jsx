@@ -210,7 +210,7 @@ const ClinicalRecordApp = () => {
                 />
             )}
 
-            <div className={`flex flex-1 w-full overflow-hidden ${printMode ? '' : ''}`}>
+            <div className={`flex flex-1 w-full ${printMode ? 'overflow-visible h-auto block' : 'overflow-hidden'}`}>
                 {!printMode && (
                     <Sidebar
                         activeTab={activeTab}
@@ -220,7 +220,7 @@ const ClinicalRecordApp = () => {
                     />
                 )}
 
-                <main className={`flex-1 flex flex-col min-w-0 bg-white relative overflow-y-auto ${printMode ? 'w-full' : ''}`}>
+                <main className={`flex-1 flex flex-col min-w-0 bg-white relative ${printMode ? 'w-full h-auto overflow-visible block' : 'overflow-y-auto'}`}>
                     {printMode ? (
                         <PrintView formData={formData} resultados={resultados} setPrintMode={setPrintMode} />
                     ) : (

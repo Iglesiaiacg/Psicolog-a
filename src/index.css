@@ -41,6 +41,32 @@ body {
   flex-direction: column;
 }
 
+@media print {
+  @page {
+    margin: 0;
+    size: letter;
+  }
+
+  body,
+  #root,
+  .print-container {
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .print\:break-after-page {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  /* Prevent breaks inside components if needed */
+  .break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
