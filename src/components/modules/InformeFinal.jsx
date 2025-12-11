@@ -10,13 +10,13 @@ const InformeFinal = ({ formData, setFormData, handleChange, resultados }) => {
     };
 
     return (
-        <div className="space-y-4">
-            <h3 className="font-bold text-lg text-blue-900 flex items-center gap-2"><FileText size={24} /> Informe Final</h3>
-            <button onClick={generarInformeFinal} className="w-full bg-indigo-600 text-white px-4 py-3 rounded-lg shadow-lg hover:bg-indigo-700 text-sm font-bold flex items-center justify-center gap-2 transition-all mb-6 border-2 border-indigo-400 transform hover:scale-[1.02] active:scale-[0.98]"><Sparkles size={20} /> INTEGRAR EXPEDIENTE COMPLETO</button>
-            <label className="font-bold text-sm text-gray-700">Resumen del Caso:</label><textarea name="informeResumen" value={formData.informeResumen} onChange={handleChange} className="border p-2 rounded w-full h-24 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
-            <label className="font-bold text-sm text-gray-700">Impresión Diagnóstica:</label><textarea name="informeDiagnostico" value={formData.informeDiagnostico} onChange={handleChange} className="border p-2 rounded w-full h-24 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
-            <label className="font-bold text-sm text-gray-700">Pronóstico:</label><textarea name="informePronostico" value={formData.informePronostico} onChange={handleChange} className="border p-2 rounded w-full h-24 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
-            <label className="font-bold text-sm text-gray-700">Recomendaciones:</label><textarea name="informeRecomendaciones" value={formData.informeRecomendaciones} onChange={handleChange} className="border p-2 rounded w-full h-24 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
+        <div className="space-y-4 w-full">
+            <h3 className="font-bold text-lg text-slate-800 flex items-center gap-2"><FileText size={24} /> Informe Final</h3>
+            <button onClick={generarInformeFinal} className="w-full bg-slate-900 text-white px-4 py-3 rounded-lg shadow-lg hover:bg-slate-800 text-sm font-bold flex items-center justify-center gap-2 transition-all mb-6 border-2 border-slate-700 transform hover:scale-[1.02] active:scale-[0.98]"><Sparkles size={20} /> INTEGRAR EXPEDIENTE COMPLETO</button>
+            <label className="font-bold text-sm text-slate-700">Resumen del Caso:</label><textarea name="informeResumen" value={formData.informeResumen} onChange={handleChange} className="border p-3 rounded w-full h-24 border-slate-300 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition-all" />
+            <label className="font-bold text-sm text-slate-700">Impresión Diagnóstica:</label><textarea name="informeDiagnostico" value={formData.informeDiagnostico} onChange={handleChange} className="border p-3 rounded w-full h-24 border-slate-300 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition-all" />
+            <label className="font-bold text-sm text-slate-700">Pronóstico:</label><textarea name="informePronostico" value={formData.informePronostico} onChange={handleChange} className="border p-3 rounded w-full h-24 border-slate-300 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition-all" />
+            <label className="font-bold text-sm text-slate-700">Recomendaciones:</label><textarea name="informeRecomendaciones" value={formData.informeRecomendaciones} onChange={handleChange} className="border p-3 rounded w-full h-24 border-slate-300 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition-all" />
         </div>
     );
 };
