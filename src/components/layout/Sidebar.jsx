@@ -32,7 +32,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, toggleSidebar }) => {
                                 setActiveTab(item.id);
                                 if (window.innerWidth < 768) toggleSidebar();
                             }}
-                            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all mb-1 ${activeTab === item.id ? 'bg-blue-100 text-blue-900 font-bold border-l-4 border-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}
+                            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all mb-1 ${activeTab === item.id ? 'bg-slate-200 text-slate-900 font-bold border-l-4 border-slate-600' : 'text-slate-600 hover:bg-slate-100'}`}
                         >
                             <item.icon size={18} />
                             <span className="text-sm">{item.label}</span>

@@ -3,7 +3,7 @@ import { LayoutTemplate, Monitor, Printer, Menu, X } from 'lucide-react';
 
 const Header = ({ setPrintMode, handlePrint, toggleSidebar, isSidebarOpen }) => {
     return (
-        <header className="bg-indigo-900 text-white p-4 shadow-md sticky top-0 z-50">
+        <header className="bg-slate-900 text-white p-4 shadow-md sticky top-0 z-50">
             <div className="w-full px-4 flex justify-between items-center">
                 <div className="flex items-center gap-4">
                     <button onClick={toggleSidebar} className="md:hidden p-1 hover:bg-indigo-800 rounded">
