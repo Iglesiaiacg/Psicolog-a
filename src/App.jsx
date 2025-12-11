@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ROLES_FAMILIA, ESFERAS_QUESTIONS, MACHOVER_INDICADORES } from './utils/constants';
 
 // UI Components
@@ -182,7 +182,19 @@ const ClinicalRecordApp = () => {
         setFormData(prev => ({ ...prev, ceperInterpretacion: texto }));
     };
 
-    const handlePrint = () => { setPrintMode(true); setTimeout(() => { window.print(); setPrintMode(false); }, 100); };
+    // --- PRINTING LOGIC ---
+    useEffect(() => {
+        if (printMode) {
+            // Wait for render cycle to complete and browser to repaint
+            const timer = setTimeout(() => {
+                window.print();
+                setPrintMode(false);
+            }, 500);
+            return () => clearTimeout(timer);
+        }
+    }, [printMode]);
+
+    const handlePrint = () => { setPrintMode(true); };
 
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col font-sans text-gray-800">
