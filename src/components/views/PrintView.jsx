@@ -176,7 +176,7 @@ const PrintView = ({ formData, resultados, setPrintMode }) => {
                     <div className="grid grid-cols-4 gap-2 text-[9px]">
                         {Array.from({ length: 170 }, (_, i) => i + 1).map(num => (
                             <div key={num} className="border p-1 rounded flex justify-between items-center break-inside-avoid">
-                                <span className="text-gray-500 font-bold">Item {num}</span>
+                                <span className="text-gray-500 font-bold">Reactivo {num}</span>
                                 <span className="font-black bg-gray-100 px-1 rounded">{formData[`ceperQ${num}`] || '-'}</span>
                             </div>
                         ))}

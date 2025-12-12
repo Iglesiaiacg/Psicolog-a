@@ -35,7 +35,7 @@ const Ceper = ({ formData, setFormData, handleChange, resultados, generarInterpr
                             <div key={style} className="flex items-center text-sm group">
                                 <span className="w-32 font-bold text-slate-600 group-hover:text-slate-900 transition-colors">{style}</span>
                                 <div className="flex-1 bg-slate-100 rounded-full h-3 overflow-hidden shadow-inner">
-                                    <div className="bg-slate-600 h-full transition-all duration-1000 ease-out" style={{ width: `${Math.min((score / 120) * 100, 100)}%` }}></div>
+                                    <div className="bg-slate-600 h-full transition-all duration-1000 ease-out" style={{ width: `${Math.min((score / 84) * 100, 100)}%` }}></div>
                                 </div>
                                 <span className="w-10 text-right font-mono font-bold text-slate-700">{score}</span>
                             </div>

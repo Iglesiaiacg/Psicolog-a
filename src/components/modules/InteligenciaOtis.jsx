@@ -1,9 +1,31 @@
 import React, { useState } from 'react';
 import { ListChecks } from 'lucide-react';
-import { OTIS_QUESTIONS } from '../../utils/constants';
+import { OTIS_QUESTIONS, OTIS_ANSWERS, OTIS_NORMS } from '../../utils/constants';
 
 const InteligenciaOtis = ({ formData, handleChange }) => {
     const [otisView, setOtisView] = useState('cuestionario');
+
+    const autoCalificarOtis = () => {
+        let aciertos = 0;
+        let errores = 0;
+
+        OTIS_ANSWERS.forEach((correcta, idx) => {
+            const respuestaUsuario = (formData[`otis${idx + 1}`] || "").toString().trim().toUpperCase();
+            if (respuestaUsuario === correcta) {
+                aciertos++;
+            } else if (respuestaUsuario !== "") {
+                errores++;
+            }
+        });
+
+        const norm = OTIS_NORMS.find(n => aciertos >= n.min);
+        const diagnostico = norm ? norm.label : "Indeterminado";
+
+        handleChange({ target: { name: 'otisAciertos', value: aciertos } });
+        handleChange({ target: { name: 'otisErrores', value: errores } });
+        handleChange({ target: { name: 'otisDiagnostico', value: diagnostico } });
+        setOtisView('resultados');
+    };
 
     return (
         <div className="space-y-4 w-full">
@@ -11,6 +33,9 @@ const InteligenciaOtis = ({ formData, handleChange }) => {
             <div className="flex gap-2 border-b border-slate-200">
                 <button onClick={() => setOtisView('cuestionario')} className={`px-4 py-2 font-bold border-t border-l border-r rounded-t transition-colors ${otisView === 'cuestionario' ? 'text-slate-900 bg-white border-b-white border-slate-300 translate-y-[1px]' : 'text-slate-500 bg-slate-50 border-slate-200 hover:text-slate-800'}`}>Cuestionario</button>
                 <button onClick={() => setOtisView('resultados')} className={`px-4 py-2 font-bold border-t border-l border-r rounded-t transition-colors ${otisView === 'resultados' ? 'text-slate-900 bg-white border-b-white border-slate-300 translate-y-[1px]' : 'text-slate-500 bg-slate-50 border-slate-200 hover:text-slate-800'}`}>Ver Resultados</button>
+                <div className="flex-1 flex justify-end">
+                    <button onClick={autoCalificarOtis} className="bg-slate-800 text-white px-3 py-1 rounded text-xs font-bold shadow hover:bg-slate-700 transition-colors">Calificar Automáticamente</button>
+                </div>
             </div>
             {otisView === 'cuestionario' && (
                 <div className="grid grid-cols-1 gap-2 h-[50vh] overflow-y-auto pr-2 border rounded p-2 bg-slate-50 border-slate-200 scrollbar-thin scrollbar-thumb-slate-300">

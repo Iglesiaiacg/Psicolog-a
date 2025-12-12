@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
-import { HAMA_QUESTIONS } from '../../utils/constants';
+import { HAMA_QUESTIONS, HAMA_INTERPRETATIONS } from '../../utils/constants';
 
 const AnsiedadHamA = ({ formData, handleChange, resultados }) => {
     const [hamaView, setHamaView] = useState('cuestionario');
@@ -29,10 +29,33 @@ const AnsiedadHamA = ({ formData, handleChange, resultados }) => {
                 </div>
             )}
             {hamaView === 'resultados' && (
-                <div className="bg-white border text-center rounded p-6 shadow-sm animate-fade-in border-slate-200">
+                <div className="bg-white border rounded p-6 shadow-sm animate-fade-in border-slate-200">
                     <div className="flex flex-col items-center justify-center mb-6">
                         <div className="text-4xl font-black text-yellow-600 mb-2">{resultados.hama.score} <span className="text-sm text-slate-400 font-normal">/ 56</span></div>
-                        <div className="text-xl font-bold text-slate-700">{resultados.hama.text}</div>
+                        <div className="text-xl font-bold text-slate-700 mb-4">{resultados.hama.text}</div>
+
+                        <div className="w-full text-left bg-slate-50 p-4 rounded border border-slate-100 mb-4">
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm border-b pb-1">Análisis de Subtipos (Experto)</h4>
+                            {(() => {
+                                // Psíquica: 1-6, 14 (Indices 0-5, 13)
+                                // Somática: 7-13 (Indices 6-12)
+                                let psiquica = 0;
+                                [0, 1, 2, 3, 4, 5, 13].forEach(i => psiquica += parseInt(formData[`hama${i + 1}`] || 0));
+
+                                let somatica = 0;
+                                [6, 7, 8, 9, 10, 11, 12].forEach(i => somatica += parseInt(formData[`hama${i + 1}`] || 0));
+
+                                const predominio = psiquica > somatica ? HAMA_INTERPRETATIONS.psiquica : (somatica > psiquica ? HAMA_INTERPRETATIONS.somatica : HAMA_INTERPRETATIONS.mixta);
+
+                                return (
+                                    <div className="text-xs space-y-2">
+                                        <div className="flex justify-between"><span>Ansiedad Psíquica:</span> <b>{psiquica} pts</b></div>
+                                        <div className="flex justify-between"><span>Ansiedad Somática:</span> <b>{somatica} pts</b></div>
+                                        <p className="mt-2 text-slate-600 italic border-l-2 border-slate-400 pl-2">{predominio}</p>
+                                    </div>
+                                );
+                            })()}
+                        </div>
                     </div>
                 </div>
             )}

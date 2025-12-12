@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AlertCircle } from 'lucide-react';
-import { BDI_ITEMS } from '../../utils/constants';
+import { BDI_ITEMS, BDI_RISK_ALERTS } from '../../utils/constants';
 
 const DepresionBDI = ({ formData, handleChange, resultados }) => {
     const [bdiView, setBdiView] = useState('cuestionario');
@@ -32,6 +32,22 @@ const DepresionBDI = ({ formData, handleChange, resultados }) => {
                     <div className="flex flex-col items-center justify-center mb-6">
                         <div className="text-4xl font-black text-slate-700 mb-2">{resultados.bdi.score} <span className="text-sm text-slate-400 font-normal">/ 63</span></div>
                         <div className="text-xl font-bold text-slate-700">{resultados.bdi.text}</div>
+
+                        <div className="w-full mt-4 space-y-2">
+                            {/* Alerta de Suicidio: Item 9 (Index 8) */}
+                            {parseInt(formData.bdi9 || 0) > 0 && (
+                                <div className="bg-red-50 border-l-4 border-red-500 p-4 text-left rounded shadow-sm">
+                                    <p className="font-bold text-red-700 text-sm animate-pulse">{BDI_RISK_ALERTS.suicidio}</p>
+                                </div>
+                            )}
+
+                            {/* Alerta de Severidad */}
+                            {resultados.bdi.score > 28 && (
+                                <div className="bg-orange-50 border-l-4 border-orange-500 p-4 text-left rounded shadow-sm">
+                                    <p className="font-bold text-orange-700 text-sm">{BDI_RISK_ALERTS.severo}</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
