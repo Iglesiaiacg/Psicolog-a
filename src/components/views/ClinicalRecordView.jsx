@@ -45,6 +45,7 @@ const INITIAL_STATE = {
 
     familiogramaInterpretacion: "",
     familia: [{ id: 'paciente', rol: 'Paciente', nombre: '', edad: '', genero: 'F', finado: false }],
+    familiaRelaciones: [],
 
     esferasInterpretacion: "",
     ...Object.fromEntries(Array.from({ length: 30 }, (_, i) => [`esferaQ${i + 1}`, 3])),
@@ -195,8 +196,53 @@ const ClinicalRecordView = () => {
 
     const generarInterpretacionFamiliograma = () => {
         const tamano = formData.familia.length;
-        let interpretacion = `INTERPRETACIÓN SISTÉMICA ESTRUCTURAL\n\nSistema familiar compuesto por ${tamano} miembros. Se recomienda explorar la dinámica de los subsistemas y los límites generacionales detectados en el gráfico.`;
-        setFormData(prev => ({ ...prev, familiogramaInterpretacion: interpretacion }));
+        const rels = formData.familiaRelaciones || [];
+        const padre = formData.familia.find(f => f.rol === 'Padre');
+        const madre = formData.familia.find(f => f.rol === 'Madre');
+        const paciente = formData.familia.find(f => f.rol === 'Paciente');
+
+        let analisis = `INTERPRETACIÓN SISTÉMICA ESTRUCTURAL\n\n`;
+        analisis += `ESTRUCTURA: Sistema familiar compuesto por ${tamano} miembros. `;
+
+        // Subsistema Conyugal / Parental
+        if (padre && madre) {
+            const relPadres = rels.find(r => (r.from === padre.id && r.to === madre.id) || (r.from === madre.id && r.to === padre.id));
+            if (relPadres) {
+                if (relPadres.type === 'conflictiva') analisis += `Se observa un subsistema parental con interacciones conflictivas, lo que sugiere dificultad en la resolución de problemas conjunta. `;
+                else if (relPadres.type === 'distante') analisis += `El subsistema conyugal presenta distanciamiento emocional, pudiendo afectar la cohesión familiar. `;
+                else if (relPadres.type === 'ruptura') analisis += `Existe una ruptura o separación explícita en el subsistema parental. `;
+            }
+        }
+
+        // Relación con el Paciente (Límites)
+        const relsPaciente = rels.filter(r => r.from === paciente?.id || r.to === paciente?.id);
+        if (relsPaciente.length > 0) {
+            analisis += `\n\nDINÁMICA DEL PACIENTE: `;
+            relsPaciente.forEach(r => {
+                const otherId = r.from === paciente.id ? r.to : r.from;
+                const other = formData.familia.find(f => f.id === otherId);
+                if (other) {
+                    if (r.type === 'conflictiva') analisis += `Mantiene una relación conflictiva con ${other.label || other.rol}, indicando posibles tensiones no resueltas. `;
+                    if (r.type === 'estrecha') analisis += `Vínculo estrecho con ${other.label || other.rol}, que podría sugerir alianzas o dependencia. `;
+                    if (r.type === 'ruptura') analisis += `Corte emocional (cutoff) con ${other.label || other.rol}. `;
+                }
+            });
+        }
+
+        // Triangulacion
+        // (Simple heuristic: Conflict Parent-Parent AND Close Patient-Parent)
+        if (padre && madre && paciente) {
+            const relPadres = rels.find(r => (r.from === padre.id && r.to === madre.id) || (r.from === madre.id && r.to === padre.id));
+            const relPacMadre = rels.find(r => (r.from === paciente.id && r.to === madre.id) || (r.from === madre.id && r.to === paciente.id));
+
+            if (relPadres?.type === 'conflictiva' && relPacMadre?.type === 'estrecha') {
+                analisis += `\n\nHIPÓTESIS SISTÉMICA: Posible triangulación donde el paciente podría estar funcionando como aliado de la figura materna ante el conflicto conyugal.`;
+            }
+        }
+
+        analisis += `\n\nSe recomienda explorar la flexibilidad de los límites y la presencia de jerarquías funcionales.`;
+
+        setFormData(prev => ({ ...prev, familiogramaInterpretacion: analisis }));
     };
 
     const generarInterpretacionCeper = () => {

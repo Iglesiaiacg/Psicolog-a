@@ -274,6 +274,11 @@ export const BDI_ITEMS = [
     "19. Dificultad de Concentración", "20. Cansancio o Fatiga", "21. Pérdida de Interés en el Sexo"
 ];
 
+export const BDI_RISK_ALERTS = {
+    suicidio: "⚠️ ALERTA CLÍNICA: El paciente ha reportado pensamientos o deseos suicidas (Item 9). Se requiere evaluación de riesgo inmediata y protocolo de seguridad.",
+    severo: "❗ ATENCIÓN: La puntuación sugiere un episodio depresivo severo. Se recomienda derivación prioritaria a psiquiatría."
+};
+
 export const OTIS_QUESTIONS = [
     "1. Lo opuesto al odio es:",
     "2. Si 3 lápices cuestan 5 pesos, ¿cuánto costarán 24 lápices?",
@@ -286,6 +291,23 @@ export const OTIS_QUESTIONS = [
     "9. ¿Cuál de las siguientes palabras no encaja con las demás?",
     "10. Fe es a creencia como duda es a:",
     ...Array.from({ length: 65 }, (_, i) => `${i + 11}. Pregunta ${i + 11} del Test de Inteligencia OTIS (Texto completo en manual)...`)
+];
+
+export const OTIS_ANSWERS = Array(75).fill(""); // Placeholder answers to prevent crash. Needs to be populated with real key.
+
+export const OTIS_NORMS = [
+    { min: 50, label: "Superior" },
+    { min: 35, label: "Superior al Término Medio" },
+    { min: 20, label: "Término Medio" },
+    { min: 12, label: "Inferior al Término Medio" },
+    { min: 0, label: "Bajo o Deficiente" }
+];
+
+export const RELATIONSHIP_TYPES = [
+    { id: 'estrecha', label: 'Estrecha / Muy Unida', color: 'green', strokeDash: '0', strokeWidth: '3' },
+    { id: 'distante', label: 'Distante / Pobre', color: 'gray', strokeDash: '4 4', strokeWidth: '1.5' },
+    { id: 'conflictiva', label: 'Conflictiva / Hostil', color: 'red', strokeDash: '0', strokeWidth: '1.5', zigzag: true },
+    { id: 'ruptura', label: 'Ruptura / Corte', color: 'black', strokeDash: '0', strokeWidth: '1.5', cutoff: true }
 ];
 
 export const ROLES_FAMILIA = [

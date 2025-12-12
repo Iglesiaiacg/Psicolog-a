@@ -43,27 +43,55 @@ body {
 
 @media print {
   @page {
-    margin: 0;
+    margin: 1.5cm 1cm;
+    /* Top/Bottom 1.5cm, Left/Right 1cm */
     size: letter;
   }
 
-  body,
+  body {
+    background-color: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   #root,
   .print-container {
+    width: auto !important;
+    /* Let margins dictate width */
     height: auto !important;
     overflow: visible !important;
     display: block !important;
+    background-color: white !important;
   }
 
+  /* Force page breaks */
   .print\:break-after-page {
     break-after: page !important;
     page-break-after: always !important;
   }
 
-  /* Prevent breaks inside components if needed */
+  .print\:break-before-page {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* Prevent awkward breaks */
   .break-inside-avoid {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
+  }
+
+  /* Ensure text is black for readability */
+  p,
+  span,
+  div,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #000 !important;
   }
 }
 

@@ -4,7 +4,15 @@ import { FileText, Sparkles } from 'lucide-react';
 const InformeFinal = ({ formData, setFormData, handleChange, resultados }) => {
     const generarInformeFinal = () => {
         let resumen = `Paciente ${formData.sexo === 'F' ? 'femenina' : 'masculino'} de ${formData.edad} años, ocupación ${formData.ocupacion}. Acude a consulta refiriendo: "${formData.motivoConsulta}".\n\n`;
-        let diagnostico = `IMPRESIÓN DIAGNÓSTICA MULTIAXIAL\n\n- Ansiedad: ${resultados.hama.text} (${resultados.hama.score}).\n- Depresión: ${resultados.bdi.text} (${resultados.bdi.score}).\n- Personalidad: Rasgos ${Object.entries(resultados.ceper).sort((a, b) => b[1] - a[1])[0][0]}.\n- Esferas críticas: ${Object.entries(resultados.esferas).filter(x => x[1] <= 15).map(x => x[0]).join(', ') || 'Ninguna'}.`;
+
+        // Formato Multiaxial DSM-IV (Estándar solicitado para expedientes completos)
+        let diagnostico = `DIAGNÓSTICO MULTIAXIAL\n\n`;
+        diagnostico += `EJE I (Trastornos Clínicos y Otros Problemas): \n- \n\n`;
+        diagnostico += `EJE II (Trastornos de la Personalidad y Retraso Mental): \n- Rasgos predominantes: ${Object.entries(resultados.ceper).sort((a, b) => b[1] - a[1])[0][0]}.\n\n`;
+        diagnostico += `EJE III (Enfermedades Médicas): \n- \n\n`;
+        diagnostico += `EJE IV (Problemas Psicosociales y Ambientales): \n- \n\n`;
+        diagnostico += `EJE V (Evaluación de la Actividad Global - EAG): \n- \n\n`;
+        diagnostico += `SUSTENTO PSICOMÉTRICO:\n- Ansiedad (HAM-A): ${resultados.hama.text} (${resultados.hama.score})\n- Depresión (BDI-II): ${resultados.bdi.text} (${resultados.bdi.score})\n- Esferas Críticas: ${Object.entries(resultados.esferas).filter(x => x[1] <= 15).map(x => x[0]).join(', ') || 'Sin esferas críticas'}`;
 
         setFormData(prev => ({ ...prev, informeResumen: resumen, informeDiagnostico: diagnostico }));
     };
