@@ -259,6 +259,12 @@ export const HAMA_QUESTIONS = [
     "12. Síntomas genitourinarios", "13. Síntomas autónomos", "14. Comportamiento en la entrevista"
 ];
 
+export const HAMA_INTERPRETATIONS = {
+    psiquica: "Predominio de ansiedad psíquica: Preocupación, tensión mental, miedos, insomnio de conciliación, dificultades cognitivas.",
+    somatica: "Predominio de ansiedad somática: Molestias físicas musculares, sensoriales, cardiovasculares, respiratorias o gastrointestinales.",
+    mixta: "Sin predominio claro: Presenta una combinación equilibrada de síntomas psíquicos y somáticos."
+};
+
 export const BDI_ITEMS = [
     "1. Tristeza", "2. Pesimismo", "3. Sentimientos de Fracaso", "4. Pérdida de Placer",
     "5. Sentimientos de Culpa", "6. Sentimientos de Castigo", "7. Disconformidad con uno mismo",
