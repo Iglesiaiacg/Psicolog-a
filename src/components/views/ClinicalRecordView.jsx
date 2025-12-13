@@ -43,6 +43,28 @@ const INITIAL_STATE = {
     filiacionPresentacion: "",
     filiacionRelacion: "",
 
+    // III. Datos Biográficos
+    bioFamiliaDinama: "", bioFamiliaRelacion: "", bioFamiliaEventos: "", bioFamiliaRol: "",
+    bioAmistadesRed: "", bioAmistadesCalidad: "", bioAmistadesCompartir: "", bioAmistadesConflictos: "", bioAmistadesFrecuencia: "",
+    bioParejaActual: "", bioParejaRelacion: "", bioParejaSatisfaccion: "", bioParejaConflictos: "", bioParejaExpectativas: "",
+
+    // IV. Factores Biológicos
+    bioSaludPreocupacion: "", bioMedicamentos: "", bioDeporte: "", bioSuenoHoras: "",
+    bioSaludActual: "", bioDiagnosticosPrevios: "",
+
+    // V. Antecedentes Escolares
+    escGrado: "", escDesempeno: "", escConducta: "", escSituaciones: "", escExperiencia: "",
+
+    // VI. Antecedentes Laborales
+    labPrimerTrabajo: "", labRelacionJefes: "", labEstres: "", labAmbiente: "", labConflictos: "", labSentido: "",
+
+    // VII. Motivo de Consulta (Estructurado)
+    motivoQueOcurre: "", motivoDesdeCuando: "", motivoComoAfecta: "", motivoExpectativas: "",
+    motivoConsulta: "", // Keeping for backward compatibility or summary
+
+    // VIII. Observaciones
+    observacionesGenerales: "",
+
     familiogramaInterpretacion: "",
     familia: [{ id: 'paciente', rol: 'Paciente', nombre: '', edad: '', genero: 'F', finado: false }],
     familiaRelaciones: [],
@@ -93,6 +115,72 @@ const INITIAL_STATE = {
 
     avisoPrivacidadAceptado: false,
     consentimientoInformadoAceptado: false
+};
+
+const DEMO_DATA = {
+    pacienteNombre: "Daniela Almazan Perez",
+    edad: "34",
+    fechaNacimiento: "19/Junio/1991",
+    sexo: "F",
+    estadoCivil: "Unión Libre",
+    escolaridad: "Licenciatura",
+    ocupacion: "Nutriologa",
+    domicilio: "Chihuahua #207",
+    telefono: "2281882819",
+    nacionalidad: "Mexicana",
+    lugarOrigen: "Tlanepantla, Edo. Mexico",
+    referidoPor: "Propia Cuenta",
+
+    filiacionPresentacion: "La consultante llega puntual a la entrevista inicial, se presenta de manera cordial. Expresa de manera clara que presenta periodos constantes de llanto e inseguridad relacionado con la pérdida de embarazo ocurrida hace 4 meses. Menciona que este evento ha generado inestabilidad emocional y conflictos en la relación de pareja.",
+    filiacionRelacion: "Durante la entrevista, la consultante mantiene una actitud cooperadora y respetuosa. Responde de manera clara y coherente a lo que se le pregunta, sin embargo, al abordar el tema relacionado con la pérdida del embarazo, muestra pausas prolongadas y tono de voz bajo. Mantiene contacto visual intermitente y postura tensa.",
+
+    bioFamiliaDinama: "Con su pareja, la consultante refiere que la dinámica de pareja es conflictiva.",
+    bioFamiliaRelacion: "Menciona sentir inseguridad y poca comunicación (pareja).",
+    bioFamiliaEventos: "Pérdida de un bebé.",
+    bioFamiliaRol: "Ama de casa, aunque es Profesional refiere que se siente frustrada.",
+
+    bioAmistadesRed: "Si",
+    bioAmistadesCalidad: "Menciona que sus redes de apoyo son sólidas.",
+    bioAmistadesCompartir: "Si",
+    bioAmistadesConflictos: "No",
+    bioAmistadesFrecuencia: "Una vez a la semana",
+
+    bioParejaActual: "Si. Hace 2 años.",
+    bioParejaRelacion: "Poca comunicación y hay roces en la convivencia (inseguridad).",
+    bioParejaSatisfaccion: "Poco satisfecha.",
+    bioParejaConflictos: "Si, violencia verbal.",
+    bioParejaExpectativas: "Idealización, que sea una relación estable y una fuente de seguridad.",
+
+    bioSaludPreocupacion: "Si. Artritis Reumatoide.",
+    bioMedicamentos: "Diclofenaco 100 mg. Prednisona 5 mg.",
+    bioDeporte: "Si. Ocasionalmente.",
+    bioSuenoHoras: "7",
+    bioSaludActual: "Artritis Reumatoide",
+    bioDiagnosticosPrevios: "Miomas",
+
+    escGrado: "Posgrado",
+    escDesempeno: "Bueno",
+    escConducta: "No",
+    escSituaciones: "Si. Cambio de residencia.",
+    escExperiencia: "Si influyo en continuar con la autoexigencia en su vida personal.",
+
+    labPrimerTrabajo: "24 años. 1 año.",
+    labRelacionJefes: "Buena",
+    labEstres: "Si, mucho estrés por conductas perfeccionistas.",
+    labAmbiente: "Buena colaboración y de respeto.",
+    labConflictos: "No",
+    labSentido: "Un espacio seguro donde encuentra apoyo.",
+
+    motivoQueOcurre: "\"Desde la pérdida de mi bebé me siento triste y lloro\".",
+    motivoDesdeCuando: "\"Esto me pasa desde hace 4 meses\". \"Han sido muy difíciles y aun más porque mi pareja no me comprende\".",
+    motivoComoAfecta: "\"Me afecto mucho en lo personal y con mi pareja\". \"El trabajo es mi único espacio seguro ya que me siento ocupada\".",
+    motivoExpectativas: "\"Quiero sentirme mejor y entender cómo manejar esto\". \"Espero apoyo emocional para superar mi duelo y mejorar mi relación de pareja\".",
+
+    observacionesGenerales: "Refiere que desde la pérdida de su embarazo tiene episodios de llanto, inseguridad y pensamientos recurrentes sobre lo ocurrido. Expresa que este evento ha afectado su vida personal, generando sentimientos de tristeza y dificultad para regular sus emociones. Señala que su relación de pareja se ha visto deteriorada, percibe distanciamiento y falta de compresión por parte de su pareja, lo cual le genera temor a perderlo y aumenta sus conflictos. Menciona que en el ámbito laboral logra mantenerse funcional y considera un espacio que le permite distraerse y no pensar en su situación.",
+
+    // Calculated scores match the narrative
+    hama1: "2", hama2: "3", hama3: "1", hama4: "1", hama5: "2", hama6: "2",
+    bdi1: "1", bdi2: "2", bdi3: "1", bdi4: "2", bdi5: "1"
 };
 
 const ClinicalRecordView = () => {
@@ -275,6 +363,12 @@ const ClinicalRecordView = () => {
                         <ArrowLeft size={16} /> Volver al Tablero
                     </button>
                     <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setFormData(prev => ({ ...prev, ...DEMO_DATA }))}
+                            className="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-1 rounded transition-colors border border-slate-600"
+                        >
+                            🪄 Llenar Ejemplo
+                        </button>
                         {isSaving && <span className="text-xs text-yellow-400 flex items-center gap-1 animate-pulse"><Save size={12} /> Guardando...</span>}
                         {!isSaving && <span className="text-xs text-green-400 flex items-center gap-1"><Save size={12} /> Guardado</span>}
                     </div>

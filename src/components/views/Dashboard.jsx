@@ -163,6 +163,12 @@ const Dashboard = () => {
                             <Sparkles size={20} /> Demo Completo
                         </button>
                         <button
+                            onClick={() => navigate('/formatos')}
+                            className="bg-slate-800 hover:bg-slate-900 text-white px-4 py-3 rounded-lg font-bold flex items-center gap-2 transition-colors border border-slate-700"
+                        >
+                            <User size={20} /> Banco de Formatos
+                        </button>
+                        <button
                             onClick={handleCreatePatient}
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
                         >

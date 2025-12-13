@@ -293,14 +293,23 @@ export const OTIS_QUESTIONS = [
     ...Array.from({ length: 65 }, (_, i) => `${i + 11}. Pregunta ${i + 11} del Test de Inteligencia OTIS (Texto completo en manual)...`)
 ];
 
-export const OTIS_ANSWERS = Array(75).fill(""); // Placeholder answers to prevent crash. Needs to be populated with real key.
+export const OTIS_ANSWERS = [
+    "C", "30", "D", "B", "A", "B", "4", "D", "C", "B", // 1-10
+    "B", "D", "F", "A", "240", "D", "C", "D", "E", "C", // 11-20
+    "8", "B", "B", "5", "B", "A", "D", "D", "C", "A", // 21-30
+    "C", "B", "C", "C", "360", "B", "S", "I", "C", "120", // 31-40
+    "L", "A", "O", "36", "50", "C", "C", "E", "D", "A", // 41-50
+    "3", "A", "B", "B", "D", "33", "D", "NO", "C", "243", // 51-60
+    "45", "4", "C", "NORTE", "10", "6", "5", "D", "C", "R", // 61-70
+    "B", "6", "D", "C", "4" // 71-75
+];
 
 export const OTIS_NORMS = [
-    { min: 50, label: "Superior" },
+    { min: 51, label: "Superior" },
     { min: 35, label: "Superior al Término Medio" },
     { min: 20, label: "Término Medio" },
     { min: 12, label: "Inferior al Término Medio" },
-    { min: 0, label: "Bajo o Deficiente" }
+    { min: 0, label: "Bajo o Inferior" }
 ];
 
 export const RELATIONSHIP_TYPES = [
@@ -365,4 +374,82 @@ export const MACHOVER_INDICADORES = [
     "Ubicación de la hoja", "Tamaño de la figura", "Cabeza", "Rostro",
     "Cuello", "Extremidades superiores", "Tronco", "Extremidades inferiores",
     "Sombreado / Cabello", "Línea de base (piso)", "Simetría", "Presión del trazo", "Vestimenta"
+];
+
+export const OTIS_FULL_CONTENT = [
+    { q: "1. Lo opuesto al odio es:", opts: ["a) enemigo", "b) temor", "c) amor", "d) amigo", "e) alegría"] },
+    { q: "2. Si tres lápices cuestan cinco pesos ¿Cuántos lápices podré comprar con cincuenta pesos?", opts: [] },
+    { q: "3. Un pájaro no siempre tiene:", opts: ["a) alas", "b) ojos", "c) patas", "d) nido", "e) pico"] },
+    { q: "4. Lo opuesto a honor es:", opts: ["a) derrota", "b) villanía", "c) humillación", "d) cobardía", "e) miedo"] },
+    { q: "5. El zorro se parece más a:", opts: ["a) el lobo", "b) la cabra", "c) el cerdo", "d) el tigre", "e) el gato"] },
+    { q: "6. El silencio tiene la misma relación con el sonido que la oscuridad con:", opts: ["a) sótano", "b) luz", "c) ruido", "d) quietud", "e) noche"] },
+    { q: "7. Un grupo consistía en dos matrimonios, dos hermanos y dos hermanas ¿Cuál es el número mínimo de personas que podrían componer el grupo?", opts: [] },
+    { q: "8. Un árbol siempre tiene:", opts: ["a) hojas", "b) fruto", "c) yemas", "d) raíces", "e) sombra"] },
+    { q: "9. Lo opuesto de lo económico es:", opts: ["a) barato", "b) avaro", "c) gastador", "d) valor", "e) rico"] },
+    { q: "10. La plata es más cara que el hierro porque es:", opts: ["a) más pesada", "b) más escasa", "c) más blanca", "d) más dura", "e) más hermosa"] },
+    { q: "11. ¿Cuál de las seis razones expresa el significado del refrán?: \"Comida hecha compañía desecha\"", opts: ["a) No hay que separarse de los amigos después de comer", "b) No se debe olvidar el beneficio recibido y alejarse de aquél de quien se recibió", "c) A nada conduce prolongar demasiado un asunto", "d) La mayor dificultad en cualquier cosa consiste, por lo común en los principios", "e) Es peligroso prolongar la sobremesa", "f) Cada uno debe mirar antes por sí mismo que por los otros"] },
+    { q: "12. ¿Cuál de las seis razones dadas en el No. 11 expresa el significado de este proverbio?: \"Obra empezada, medio acabada\"", opts: [] },
+    { q: "13. ¿Cuál de las seis razones, dadas en el No. 11, explica el proverbio \"Antes son mis dientes que mis parientes\"?", opts: [] },
+    { q: "14. Una luz eléctrica se relaciona con la bujía (vela de alumbrar) como un automóvil se relaciona con:", opts: ["a) un carruaje", "b) la electricidad", "c) una llanta", "d) la velocidad", "e) el resplandor"] },
+    { q: "15. Si un caballo puede correr a la velocidad de 6 metros en un ¼ de segundo ¿Cuántos metros corre en 10 segundos?", opts: [] },
+    { q: "16. Una comida siempre supone:", opts: ["a) mesa", "b) plato", "c) hambre", "d) alimento", "e) agua"] },
+    { q: "17. De las cinco palabras siguientes cuatro son parecidas ¿Cuál es la que no es parecida a esas cuatro?", opts: ["a) postre", "b) lima", "c) pato", "d) papel", "e) claro"] },
+    { q: "18. Lo opuesto a nunca es:", opts: ["a) a menudo", "b) a veces", "c) frecuentemente", "d) siempre", "e) de vez en cuando"] },
+    { q: "19. Un reloj tiene con el tiempo la misma relación que un termómetro con:", opts: ["a) un reloj", "b) caliente", "c) tubo", "d) mercurio", "e) temperatura"] },
+    { q: "20. Cuál de las siguientes palabras debería ponerse en el espacio en blanco para que sea cierta la afirmación \"_____________ los hombres son más bajos que sus esposas\"", opts: ["a) siempre", "b) a menudo", "c) a veces", "d) raras veces", "e) nunca"] },
+    { q: "21. En la siguiente serie hay un número equivocado ¿Cuál debería ocupar su lugar?\n1 - 4 - 2 - 5 - 3 - 6 - 4 - 7 - 5 - 9 - 6 - 9", opts: [] },
+    { q: "22. Si las dos primeras proposiciones son ciertas la tercera es:\n- \"Todos los miembros de este club son Argentinos\"\n- \"González no es Argentino\"\n- \"González es miembro de este club\"", opts: ["a) verdadera", "b) falsa", "c) dudosa"] },
+    { q: "23. Una lucha siempre tiene:", opts: ["a) réferi", "b) contendientes", "c) espectadores", "d) aplausos", "e) victoria"] },
+    { q: "24. ¿Cuál de los números de esta serie aparece antes por segunda vez?\n6 - 4 - 5 - 3 - 7 - 0 - 9 - 5 - 9 - 8 - 8 - 6 - 5 - 4 - 7 - 3 - 0 - 8 - 9", opts: [] },
+    { q: "25. La luna se relaciona con la tierra como la tierra con:", opts: ["a) Marte", "b) el sol", "c) las nubes", "d) las estrellas", "e) el universo"] },
+    { q: "26. ¿Qué palabra hace falta para que sea verdadera la siguiente proposición? \"Los padres son ____________ más prudentes que los hijos\"", opts: ["a) siempre", "b) usualmente", "c) mucho", "d) raras veces", "e) nunca"] },
+    { q: "27. Lo opuesto a torpe es:", opts: ["a) fuerte", "b) bonito", "c) corto", "d) hábil", "e) rápido"] },
+    { q: "28. \"Una madre siempre es___________ que su hija\"", opts: ["a) más sabia", "b) más alta", "c) más gruesa", "d) más vieja", "e) más arrugada"] },
+    { q: "29. Cuál de las cinco proposiciones indica el significado del proverbio \"Haz bien y guárdate\"?", opts: ["a) El bien ha de hacerse desinteresadamente", "b) Nunca se hace el bien sin ningún provecho", "c) Hay que obrar bien y no publicarlo", "d) Hay que hacer el bien al enemigo", "e) Los ingratos pagan con malas obras el bien que se les hace"] },
+    { q: "30. ¿Cuál de las proposiciones del No. 29 explica el proverbio: \"Haz bien y no mires a quien\"?", opts: [] },
+    { q: "31. ¿Cuál de las proposiciones del No. 29 explica el proverbio: \"Haz buena harina y no toques bocina\"?", opts: [] },
+    { q: "32. Cuando un individuo enajena su propiedad es porque:", opts: ["a) la compra", "b) la vende", "c) la devuelve", "d) la presta", "e) la regala"] },
+    { q: "33. ¿Qué se relaciona con enfermedad, como cuidado se relaciona con accidente?", opts: ["a) doctor", "b) cirugía", "c) medicina", "d) hospital", "e) salubridad"] },
+    { q: "34. De estas cinco cosas, cuatro son parecidas en algo. ¿Cuál es la que no pertenece a ese grupo?", opts: ["a) contrabando", "b) robo", "c) calma", "d) estafa", "e) venta"] },
+    { q: "35. Si diez cajas llenas de manzanas pesan cuatrocientos kilogramos ¿Cuánto pesan sólo las manzanas, si cada caja pesa 4 kilogramos vacía?", opts: [] },
+    { q: "36. Lo opuesto de esperanza es:", opts: ["a) fe", "b) desaliento", "c) tristeza", "d) desgracia", "e) odio"] },
+    { q: "37. Si todas las letras que ocupan números impares se cruzaran ¿Cuál sería la décima letra no cruzada (No haga marcas en el alfabeto)\nA B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z", opts: [] },
+    { q: "38. ¿Qué letra en la palabra METACRÓMICO, ocupa el mismo lugar, contando desde el principio en dicha palabra y en el alfabeto? (no cuente la Ch, como letra)", opts: [] },
+    { q: "39. Lo que la gente dice de una persona constituye su:", opts: ["a) carácter", "b) murmuración", "c) reputación", "d) disposición", "e) personalidad"] },
+    { q: "40. Si 2 ½ mts. de tela cuestan 30 pesos ¿Cuánto cuestan 10 metros?", opts: [] },
+    { q: "41. Si las palabras siguientes se ordenaran para formar una oración ¿Con que letra comenzaría la tercera palabra de dicha proposición? (escriba la letra con mayúscula en la hoja de respuestas)\nbajo, contrario, significa, que, lo, alto.", opts: [] },
+    { q: "42. Si las primeras dos proposiciones son verdaderas, la tercera es:\n- \"Jorge es mayor que Paco\"\n- \"Jaime es mayor que Jorge\"\n- \"Paco es menor que Jaime\"", opts: ["a) verdadera", "b) falsa", "c) dudosa"] },
+    { q: "43. Suponiendo que en la palabra CONSTITUCIONAL, la primera y la segunda letras se intercambiara y también la 3ª con la 4ª y la 5ª con la 6ª, etc. escriba (en mayúsculas de imprenta) la letra que en el caso sería la 12ª contando de izquierda a derecha.", opts: [] },
+    { q: "44. Un número está equivocado en la siguiente serie ¿Cuál debe ir en su lugar?\n0 - 1 - 3 - 6 - 10 - 15 - 21 - 28 - 34", opts: [] },
+    { q: "45. Si cuatro y medio metros de tela cuestan 90 pesos ¿Cuántos pesos costarán 2 ½ metros?", opts: [] },
+    { q: "46. La influencia de un hombre en la comunidad en que vive debe depender de su:", opts: ["a) fortuna", "b) dignidad", "c) sabiduría", "d) ambición", "e) poder político"] },
+    { q: "47. ¿Cuál de las siguientes palabras tiene la misma relación con \"poco\" que ordinario tiene con respecto a \"excepcional\"?", opts: ["a) nada", "b) algo", "c) mucho", "d) menos", "e) más"] },
+    { q: "48. Lo opuesto a traidor es:", opts: ["a) amistoso", "b) valiente", "c) sabio", "d) cobarde", "e) leal"] },
+    { q: "49. ¿Cuál de las cinco siguientes palabras tiene menos relación con las otras cuatro?", opts: ["a) bueno", "b) ancho", "c) rojo", "d) camino", "e) espeso"] },
+    { q: "50. Si las dos primeras proposiciones son verdaderas, la tercera es:\n- \"Algunos de los amigos de López son cordobeses\"\n- \"Algunos de los amigos de López son dentistas\"\n- \"Algunos de los amigos de López son dentistas cordobeses\"", opts: ["a) verdadera", "b) falsa", "c) no se sabe"] },
+    { q: "51. ¿Cuántas de las siguientes palabras pueden formarse con la palabra MURCIÉLAGO, usando las letras cualquier número de veces?\nRamiro, Marianela, abrumo, amores, grano, maduro, clamores, mochila, gloria, rumiaría, gimieran, grumete, glorioso, graciosísimo", opts: [] },
+    { q: "52. La afirmación de que la luna es un queso es:", opts: ["a) absurda", "b) dudosa", "c) imposible", "d) injusta", "e) falaz"] },
+    { q: "53. De las cinco cosas que se nombran en seguida, cuatro se parecen ¿Cuál no se relaciona con las otras?", opts: ["a) alquitrán", "b) tiza", "c) hollín", "d) carbón", "e) ébano"] },
+    { q: "54. ¿Qué cosa se relaciona con un cubo, como un círculo con un cuadrado?", opts: ["a) circunferencia", "b) esfera", "c) ángulos", "d) sólido", "e) espesor"] },
+    { q: "55. Si las palabras siguientes se vieran por reflexión en un espejo lateral, ¿Cuál de ellas se vería exactamente igual a como esta escrita?", opts: ["a) oruro", "b) omor", "c) anca", "d) ama", "e) somos"] },
+    { q: "56. Si una cinta de 24 cms. de largo, mide 22 cms. después de lavada (por encogerse) ¿Qué longitud tendrá una cinta de 36 cms. después de lavada?", opts: [] },
+    { q: "57. ¿Cuál de las siguientes palabras indica un rasgo de carácter?", opts: ["a) personalidad", "b) estima", "c) amor", "d) generosidad", "e) salud"] },
+    { q: "58. Encuentre dos letras en la palabra DOMINGO que tiene tantas letras entre ambas como las mismas letras que tiene el alfabeto:\nA B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z", opts: [] },
+    { q: "59. Revolución se relaciona con evolución como aviación se relaciona con:", opts: ["a) pájaros", "b) girar", "c) caminar", "d) alas", "e) estar parado"] },
+    { q: "60. En la siguiente serie hay un número equivocado ¿Con qué otro debe reemplazarse?\n1 - 3 - 9 - 27 - 81 - 108", opts: [] },
+    { q: "61. Si Juan puede andar en bicicleta 30 metros, mientras Pedro anda 20 ¿Cuántos puede andar Juan mientras Pedro anda 30 metros?", opts: [] },
+    { q: "62. En la siguiente serie cuente cada N que está seguida inmediatamente por una O, siempre que la O no esté seguida por una T. Diga cuantas N en estas condiciones se encuentra.\nN O N T Q M N O T M O N O O N Q M N N O Q N O T O N A M O N O M", opts: [] },
+    { q: "63. Se dice que un hombre adverso a los cambios es:", opts: ["a) democrático", "b) extremista", "c) conservador", "d) anarquista", "e) liberal"] },
+    { q: "64. Indique la letra que es la cuarta a la izquierda de la letra que está a la mitad del camino entre la O y la S en el alfabeto.\nA B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z", opts: [] },
+    { q: "65. ¿Qué número está en el espacio que pertenece al rectángulo y al triángulo pero no al círculo?", opts: [] },
+    { q: "66. ¿Qué número está en las mismas figuras geométricas que el número 8?", opts: [] },
+    { q: "67. ¿Cuántos espacios hay que están sólo en dos de las figuras geométricas?", opts: [] },
+    { q: "68. Una superficie se relaciona con una línea, como una línea se relaciona con:", opts: ["a) sólido", "b) plano", "c) curva", "d) punto", "e) hilo"] },
+    { q: "69. Si las proposiciones que siguen son verdaderas, la tercera es:\n- \"No se puede llegar a ser buen violinista sin mucha práctica\"\n- \"Carlos practica mucho en el violín\"\n- \"Carlos será un gran violinista\"", opts: ["a) verdadera", "b) falsa", "c) no se sabe"] },
+    { q: "70. Si las siguientes palabras se ordenaran a modo de formar una oración con sentido ¿Con qué letra terminaría la última palabra? (Escriba la letra con mayúscula)\nSINCERIDAD, LA, RASGOS, CORTESÍA, LA, CARÁCTER, DE, DESEABLES, Y, SON", opts: [] },
+    { q: "71. Se dice que un hombre que al tomar una decisión está influenciado por opiniones preconcebidas es:", opts: ["a) influyente", "b) sujeto a prejuicios", "c) hipócrita", "d) decidido", "e) imparcial"] },
+    { q: "72. En una confitería se sirve una mezcla de dos partes de crema y tres de leche ¿Cuántos litros de crema serán necesarios para hacer 15 litros de mezcla?", opts: [] },
+    { q: "73. ¿Qué cosa tiene la misma relación con la sangre que la física con el movimiento?", opts: ["a) temperatura", "b) venas", "c) cuerpo", "d) fisiología", "e) geografía"] },
+    { q: "74. Un juicio cuyo significado no es definido se dice que es:", opts: ["a) erróneo", "b) dudoso", "c) ambiguo", "d) desfigurado", "e) hipotético"] },
+    { q: "75. Si se corta un alambre de 20 cms. de largo de modo que un pedazo sea 2/3 del otro ¿Cuántos centímetros más corto será el menor?", opts: [] }
 ];
